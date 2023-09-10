@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active-link {
+  color: #570df8;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+.link {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
