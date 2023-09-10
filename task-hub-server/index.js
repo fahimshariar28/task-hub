@@ -28,6 +28,7 @@ async function run() {
 
     //   collection
     const teamsCollection = client.db("task-hub").collection("teams");
+    const userCollection = client.db("task-hub").collection("users");
 
     //   Routes
 
@@ -225,6 +226,53 @@ async function run() {
         },
       };
       const result = await teamsCollection.updateOne(query, updateDoc, options);
+      res.send(result);
+    });
+
+    //   User Routes
+    //   Get all users
+    app.get("/users", async (req, res) => {
+      const cursor = userCollection.find({});
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+
+    //   Get user by email
+    app.get("/usersByEmail/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const user = await userCollection.findOne(query);
+      res.send(user);
+    });
+
+    //   Add a new user
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      //   check if user already exists
+      const query = { email: user.email };
+      const existingUser = await userCollection.findOne(query);
+      if (existingUser) {
+        res.send("User already exists");
+      } else {
+        const result = await userCollection.insertOne(user);
+        res.send(result);
+      }
+    });
+
+    //   Update user
+    app.patch("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const user = req.body;
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          name: user.name,
+          photo: user.photo,
+          bio: user.bio,
+        },
+      };
+      const result = await userCollection.updateOne(query, updateDoc, options);
       res.send(result);
     });
 
