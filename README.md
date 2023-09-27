@@ -55,7 +55,7 @@ Follow these steps to set up Task Hub:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/task-hub.git
+git clone https://github.com/fahimshariar28/task-hub.git
 cd task-hub
 ```
 
