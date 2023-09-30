@@ -1,17 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useUser from "../hooks/useUser";
 
 function CreateTeam({ modalRef, refetch }) {
   const user = useUser();
-  const mutation = useMutation(async (data) => {
-    return fetch("https://task-hub-server-self.vercel.app/teams", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
-    }).then((res) => res.json());
-  });
 
   const {
     register,
@@ -19,6 +11,7 @@ function CreateTeam({ modalRef, refetch }) {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
     const team = {
       name: data.name,
@@ -26,8 +19,21 @@ function CreateTeam({ modalRef, refetch }) {
       tasks: [],
     };
     try {
-      const response = await mutation.mutateAsync(team);
-      console.log(response);
+      const response = await fetch(
+        "https://task-hub-server-self.vercel.app/teams",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(team),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
       modalRef.current.close();
       toast.success("Team Created Successfully");
       reset();
@@ -37,6 +43,7 @@ function CreateTeam({ modalRef, refetch }) {
       console.log(error);
     }
   };
+
   return (
     <dialog id="my_modal_1" className="modal" ref={modalRef}>
       <div className="modal-box ">
@@ -52,7 +59,6 @@ function CreateTeam({ modalRef, refetch }) {
               className="w-full border p-2 mb-4"
             />
           </div>
-          {/* errors will return when field validation fails  */}
           {errors.exampleRequired && (
             <span className="text-red-500">This field is required</span>
           )}
