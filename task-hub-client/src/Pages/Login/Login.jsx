@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin";
 import { toast } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import Lottie from "lottie-react";
+import login from "../../assets/login.json";
 
 const Login = () => {
   const { loginUser } = useAuth();
@@ -41,12 +43,17 @@ const Login = () => {
         <title>Login | Task Hub</title>
       </Helmet>
       <div className="hero min-h-screen">
-        <div className="hero-content flex-col-reverse lg:flex-row-reverse justify-evenly">
+        <div className="hero-content flex-col lg:flex-row justify-evenly">
+          <div className="w-1/2 lg:pr-20">
+            <Lottie animationData={login} loop={true} />
+          </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">
+                    Email <span className="text-error">*</span>
+                  </span>
                 </label>
                 <input
                   {...register("email", { required: true })}
@@ -57,16 +64,16 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">
+                    Password <span className="text-error">*</span>
+                  </span>
                 </label>
-                <div className="flex items-center">
-                  <input
-                    {...register("password", { required: true })}
-                    type="password"
-                    placeholder="********"
-                    className="input input-bordered"
-                  />
-                </div>
+                <input
+                  {...register("password", { required: true })}
+                  type="password"
+                  placeholder="********"
+                  className="input input-bordered"
+                />
                 <label className="label">
                   {errors.exampleRequired && (
                     <span>This field is required</span>
@@ -77,7 +84,7 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="btn btn-primary w-9/12"
+                  className="btn btn-primary w-full"
                 />
               </div>
             </form>
