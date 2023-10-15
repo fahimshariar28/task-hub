@@ -6,7 +6,6 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Teams from "../Pages/Teams/Teams";
 import Tasks from "../Pages/Tasks/Tasks";
-import Profile from "./../Pages/Profile/Profile";
 import Dashboard from "./../Pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
@@ -26,10 +25,6 @@ const router = createBrowserRouter([
       {
         path: "/tasks/:teamId",
         element: <Tasks />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
       },
       {
         path: "/dashboard",

@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { Tooltip } from "react-tooltip";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -65,9 +66,20 @@ const NavBar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <Link to="/profile" className="text-xl text-primary">
-              {user.displayName || "Profile"}
-            </Link>
+            <div className="w-10">
+              <a id="my-anchor-element">
+                <img
+                  className="avatar rounded-full"
+                  alt={user?.displayName}
+                  src={user?.photoURL || "https://i.ibb.co/cLRwPXz/profile.png"}
+                />
+              </a>{" "}
+              <Tooltip
+                anchorSelect="#my-anchor-element"
+                content={user.displayName}
+                place="bottom"
+              ></Tooltip>
+            </div>
             <button className="btn btn-error ms-3" onClick={handleLogout}>
               Logout
             </button>
