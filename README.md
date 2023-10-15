@@ -7,7 +7,6 @@ Task Hub is a collaborative task management application that facilitates seamles
 - **User Authentication**
 
   - Sign up, log in, and log out functionality.
-  - User profiles with customizable profile pictures, usernames, and bios.
 
 - **Task Creation and Management**
 
