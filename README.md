@@ -39,6 +39,7 @@ Task Hub is a collaborative task management application that facilitates seamles
 - [react-hot-toast](https://react-hot-toast.com/)
 - [react-icons](https://react-icons.github.io/react-icons/)
 - [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+- [react-tooltip](https://github.com/ReactTooltip/react-tooltip)
 
 ## Back-End Dependencies
 
