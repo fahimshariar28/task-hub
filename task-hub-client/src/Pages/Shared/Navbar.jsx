@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 
@@ -9,30 +9,30 @@ const NavBar = () => {
     logOut();
   };
 
-  const headerOptions = (
-    <>
-      <li className="text-xl">
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "active-link" : "link")}
-        >
-          Teams
-        </NavLink>
-      </li>
-      <li className="text-xl">
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => (isActive ? "active-link" : "link")}
-        >
-          Dashboard
-        </NavLink>
-      </li>
-    </>
-  );
+  // const headerOptions = (
+  //   <>
+  //     <li className="text-xl">
+  //       <NavLink
+  //         to="/"
+  //         className={({ isActive }) => (isActive ? "active-link" : "link")}
+  //       >
+  //         Teams
+  //       </NavLink>
+  //     </li>
+  //     <li className="text-xl">
+  //       <NavLink
+  //         to="/dashboard"
+  //         className={({ isActive }) => (isActive ? "active-link" : "link")}
+  //       >
+  //         Dashboard
+  //       </NavLink>
+  //     </li>
+  //   </>
+  // );
   return (
-    <div className="navbar w-9/12 mx-auto mt-3 relative">
+    <div className="navbar mt-3 relative">
       <div className="navbar-start">
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,14 +55,14 @@ const NavBar = () => {
           >
             {headerOptions}
           </ul>
-        </div>
-        <Link to="/" className="navbar-brand hidden md:block">
+        </div> */}
+        <Link to="/" className="navbar-brand ">
           <img className="w-36 rounded-md" src="/logo.png" alt="" />
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex items-center">
+      {/* <div className="navbar-center hidden lg:flex items-center">
         <ul className="menu menu-horizontal px-1">{headerOptions}</ul>
-      </div>
+      </div> */}
       <div className="navbar-end">
         {user ? (
           <>
