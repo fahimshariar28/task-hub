@@ -7,28 +7,41 @@ import Register from "../Pages/Register/Register";
 import Teams from "../Pages/Teams/Teams";
 import Tasks from "../Pages/Tasks/Tasks";
 import Dashboard from "./../Pages/Dashboard/Dashboard";
+import Home from "../Pages/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <PrivateRoute>
-        <MainLayout />
-      </PrivateRoute>
-    ),
+    element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Teams />,
+        element: <Home />,
+      },
+      {
+        path: "/teams",
+        element: (
+          <PrivateRoute>
+            <Teams />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/tasks/:teamId",
-        element: <Tasks />,
+        element: (
+          <PrivateRoute>
+            <Tasks />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <Dashboard />{" "}
+          </PrivateRoute>
+        ),
       },
     ],
   },
