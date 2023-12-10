@@ -13,7 +13,7 @@ const NavBar = () => {
     <>
       <li className="text-xl">
         <NavLink
-          to="/"
+          to="/teams"
           className={({ isActive }) => (isActive ? "active-link" : "link")}
         >
           Teams
